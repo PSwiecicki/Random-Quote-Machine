@@ -13,8 +13,8 @@ const QuoteBox = () => {
 
   const getTweetLink = () => {
     const quoteAsLink = quote.replace(' ', '%20');
-    const authorAsLink = quote.replace(' ', '$20');
-    return `https://twitter.com/intent/tweet?text="${quoteAsLink}"%20-%20${author}&hashtags=GoodQuoteForDay`;
+    const authorAsLink = author.replace(' ', '$20');
+    return `https://twitter.com/intent/tweet?text="${quoteAsLink}"%20-%20${authorAsLink}&hashtags=GoodQuoteForDay`;
   };
 
   const getQuote = () => {
