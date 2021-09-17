@@ -8,15 +8,39 @@ import {
 } from './QuoteBox.styles';
 
 const QuoteBox = () => {
+  const [quote, setQuote] = useState('');
+  const [author, setAuthor] = useState('');
+
+  const getTweetLink = () => {
+    const quoteAsLink = quote.replace(' ', '%20');
+    const authorAsLink = quote.replace(' ', '$20');
+    return `https://twitter.com/intent/tweet?text="${quoteAsLink}"%20-%20${author}&hashtags=GoodQuoteForDay`;
+  };
+
+  const getQuote = () => {
+    fetch('https://quote-garden.herokuapp.com/api/v3/quotes/random')
+      .then((response) => response.json())
+      .then(({ data }) => {
+        setQuote(data[0].quoteText);
+        setAuthor(data[0].quoteAuthor);
+      });
+  };
+
+  useEffect(() => {
+    getQuote();
+  }, []);
+
   return (
     <Wrapper>
-      <Quote>
-        ksdljdflksdj dslkfjsdljlk sdlkfjsldkj sdlfkjsdlkfjsld lsdkjf lskdjfls
-        lsdkjfls ljkdflkjs dljsdfls ljklsfdklj
-      </Quote>
-      <Author>kjdhjhdsa</Author>
+      <Quote>{quote}</Quote>
+      <Author>{author}</Author>
       <ButtonsSection>
-        <StyledButton className="new">Get New</StyledButton>
+        <StyledButton as="a" class="twitter-share-button" href={getTweetLink()}>
+          Tweet
+        </StyledButton>
+        <StyledButton className="new" onClick={() => getQuote()}>
+          Get New
+        </StyledButton>
       </ButtonsSection>
     </Wrapper>
   );

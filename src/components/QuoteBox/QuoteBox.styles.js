@@ -17,22 +17,29 @@ export const Quote = styled.p`
   text-align: justify;
   color: #ff8519;
   font-size: 1.2rem;
+  margin-bottom: 10px;
 `;
 
 export const Author = styled.p`
+  margin-top: 10px;
   color: #de7c26;
   align-self: flex-end;
 `;
 
-export const ButtonsSection = styled.p`
+export const ButtonsSection = styled.div`
   justify-self: flex-end;
-  margin-top: 30px;
+  margin-top: 10px;
+  margin-bottom: 0;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(8, 1fr);
 
   .new {
     grid-column: -3 / -1;
+  }
+
+  .twitter-share-button {
+    grid-column: 1 / 3;
   }
 `;
 
@@ -45,6 +52,9 @@ export const StyledButton = styled.button`
   background-color: #444444;
   padding-top: 10px;
   padding-bottom: 10px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s ease-out;
 
   &:hover {
     background-color: #ff8519;
